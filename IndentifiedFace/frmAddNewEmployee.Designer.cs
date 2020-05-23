@@ -47,24 +47,24 @@ namespace IndentifiedFace
             this.panel5 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.imageBoxFrameGrabber1 = new Emgu.CV.UI.ImageBox();
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.ImageFace = new Emgu.CV.UI.ImageBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.imageBoxFrameGrabber1 = new Emgu.CV.UI.ImageBox();
-            this.ImageFace = new Emgu.CV.UI.ImageBox();
             this.btnCamera = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnAddNewEmployee = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBoxFrameGrabber1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageFace)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtmasv
@@ -75,7 +75,7 @@ namespace IndentifiedFace
             this.txtmasv.Enabled = false;
             this.txtmasv.Location = new System.Drawing.Point(96, 241);
             this.txtmasv.Name = "txtmasv";
-            this.txtmasv.Size = new System.Drawing.Size(186, 26);
+            this.txtmasv.Size = new System.Drawing.Size(186, 35);
             this.txtmasv.TabIndex = 1;
             this.txtmasv.TextChanged += new System.EventHandler(this.txtmasv_TextChanged);
             // 
@@ -88,7 +88,7 @@ namespace IndentifiedFace
             this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(91, 281);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 20);
+            this.label1.Size = new System.Drawing.Size(141, 27);
             this.label1.TabIndex = 2;
             this.label1.Text = "First Name :";
             // 
@@ -101,7 +101,7 @@ namespace IndentifiedFace
             this.label2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(91, 348);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 20);
+            this.label2.Size = new System.Drawing.Size(144, 27);
             this.label2.TabIndex = 2;
             this.label2.Text = "Last Name :";
             // 
@@ -114,7 +114,7 @@ namespace IndentifiedFace
             this.label3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(91, 217);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 20);
+            this.label3.Size = new System.Drawing.Size(173, 27);
             this.label3.TabIndex = 2;
             this.label3.Text = "Employee ID : ";
             // 
@@ -127,7 +127,7 @@ namespace IndentifiedFace
             this.label4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(91, 414);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(105, 20);
+            this.label4.Size = new System.Drawing.Size(162, 27);
             this.label4.TabIndex = 2;
             this.label4.Text = "Department :";
             // 
@@ -140,7 +140,7 @@ namespace IndentifiedFace
             this.label5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(91, 480);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 20);
+            this.label5.Size = new System.Drawing.Size(111, 27);
             this.label5.TabIndex = 2;
             this.label5.Text = "Gender :";
             // 
@@ -153,7 +153,7 @@ namespace IndentifiedFace
             this.label6.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(91, 545);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 20);
+            this.label6.Size = new System.Drawing.Size(117, 27);
             this.label6.TabIndex = 2;
             this.label6.Text = "Birthday :";
             // 
@@ -164,7 +164,7 @@ namespace IndentifiedFace
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtHo.Location = new System.Drawing.Point(96, 306);
             this.txtHo.Name = "txtHo";
-            this.txtHo.Size = new System.Drawing.Size(186, 26);
+            this.txtHo.Size = new System.Drawing.Size(186, 35);
             this.txtHo.TabIndex = 1;
             // 
             // txtTen
@@ -174,7 +174,7 @@ namespace IndentifiedFace
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTen.Location = new System.Drawing.Point(96, 372);
             this.txtTen.Name = "txtTen";
-            this.txtTen.Size = new System.Drawing.Size(186, 26);
+            this.txtTen.Size = new System.Drawing.Size(186, 35);
             this.txtTen.TabIndex = 1;
             // 
             // dtBirth
@@ -185,7 +185,7 @@ namespace IndentifiedFace
             this.dtBirth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtBirth.Location = new System.Drawing.Point(96, 570);
             this.dtBirth.Name = "dtBirth";
-            this.dtBirth.Size = new System.Drawing.Size(186, 26);
+            this.dtBirth.Size = new System.Drawing.Size(186, 35);
             this.dtBirth.TabIndex = 3;
             this.dtBirth.Value = new System.DateTime(1988, 6, 30, 0, 0, 0, 0);
             // 
@@ -198,7 +198,7 @@ namespace IndentifiedFace
             this.cbGroup.FormattingEnabled = true;
             this.cbGroup.Location = new System.Drawing.Point(96, 438);
             this.cbGroup.Name = "cbGroup";
-            this.cbGroup.Size = new System.Drawing.Size(186, 28);
+            this.cbGroup.Size = new System.Drawing.Size(186, 35);
             this.cbGroup.TabIndex = 4;
             this.cbGroup.SelectedIndexChanged += new System.EventHandler(this.cbGroup_SelectedIndexChanged);
             // 
@@ -214,7 +214,7 @@ namespace IndentifiedFace
             "Nữ"});
             this.cbGioitinh.Location = new System.Drawing.Point(96, 505);
             this.cbGioitinh.Name = "cbGioitinh";
-            this.cbGioitinh.Size = new System.Drawing.Size(186, 28);
+            this.cbGioitinh.Size = new System.Drawing.Size(186, 35);
             this.cbGioitinh.TabIndex = 4;
             // 
             // splitContainer1
@@ -230,6 +230,7 @@ namespace IndentifiedFace
             this.splitContainer1.Panel1.Controls.Add(this.panel1);
             this.splitContainer1.Panel1.Controls.Add(this.imageBoxFrameGrabber1);
             this.splitContainer1.Panel1.Controls.Add(this.label7);
+            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 
@@ -249,6 +250,7 @@ namespace IndentifiedFace
             this.splitContainer1.Panel2.Controls.Add(this.txtmasv);
             this.splitContainer1.Panel2.Controls.Add(this.cbGioitinh);
             this.splitContainer1.Panel2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
             this.splitContainer1.Size = new System.Drawing.Size(823, 621);
             this.splitContainer1.SplitterDistance = 463;
             this.splitContainer1.TabIndex = 11;
@@ -267,7 +269,7 @@ namespace IndentifiedFace
             this.label9.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(71, 127);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(137, 21);
+            this.label9.Size = new System.Drawing.Size(214, 30);
             this.label9.TabIndex = 1;
             this.label9.Text = "Face Employee :";
             // 
@@ -279,13 +281,27 @@ namespace IndentifiedFace
             this.panel1.Size = new System.Drawing.Size(245, 1);
             this.panel1.TabIndex = 2;
             // 
+            // imageBoxFrameGrabber1
+            // 
+            this.imageBoxFrameGrabber1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.imageBoxFrameGrabber1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("imageBoxFrameGrabber1.BackgroundImage")));
+            this.imageBoxFrameGrabber1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.imageBoxFrameGrabber1.Location = new System.Drawing.Point(90, 166);
+            this.imageBoxFrameGrabber1.Name = "imageBoxFrameGrabber1";
+            this.imageBoxFrameGrabber1.Size = new System.Drawing.Size(278, 306);
+            this.imageBoxFrameGrabber1.TabIndex = 0;
+            this.imageBoxFrameGrabber1.TabStop = false;
+            this.imageBoxFrameGrabber1.Click += new System.EventHandler(this.imageBoxFrameGrabber1_Click);
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(35, 29);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(225, 30);
+            this.label7.Size = new System.Drawing.Size(327, 43);
             this.label7.TabIndex = 1;
             this.label7.Text = "Face Recognition";
             // 
@@ -297,13 +313,25 @@ namespace IndentifiedFace
             this.panel2.Size = new System.Drawing.Size(150, 1);
             this.panel2.TabIndex = 2;
             // 
+            // ImageFace
+            // 
+            this.ImageFace.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ImageFace.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ImageFace.BackgroundImage")));
+            this.ImageFace.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ImageFace.Location = new System.Drawing.Point(148, 98);
+            this.ImageFace.Name = "ImageFace";
+            this.ImageFace.Size = new System.Drawing.Size(84, 93);
+            this.ImageFace.TabIndex = 0;
+            this.ImageFace.TabStop = false;
+            this.ImageFace.Click += new System.EventHandler(this.ImageFace_Click);
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(49, 33);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(133, 30);
+            this.label8.Size = new System.Drawing.Size(194, 43);
             this.label8.TabIndex = 1;
             this.label8.Text = "Employee";
             // 
@@ -322,40 +350,6 @@ namespace IndentifiedFace
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = " ";
             this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.AutoPopDelay = 5000;
-            this.toolTip1.InitialDelay = 0;
-            this.toolTip1.IsBalloon = true;
-            this.toolTip1.ReshowDelay = 100;
-            this.toolTip1.ShowAlways = true;
-            // 
-            // imageBoxFrameGrabber1
-            // 
-            this.imageBoxFrameGrabber1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.imageBoxFrameGrabber1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("imageBoxFrameGrabber1.BackgroundImage")));
-            this.imageBoxFrameGrabber1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.imageBoxFrameGrabber1.Location = new System.Drawing.Point(90, 166);
-            this.imageBoxFrameGrabber1.Name = "imageBoxFrameGrabber1";
-            this.imageBoxFrameGrabber1.Size = new System.Drawing.Size(278, 306);
-            this.imageBoxFrameGrabber1.TabIndex = 0;
-            this.imageBoxFrameGrabber1.TabStop = false;
-            this.imageBoxFrameGrabber1.Click += new System.EventHandler(this.imageBoxFrameGrabber1_Click);
-            // 
-            // ImageFace
-            // 
-            this.ImageFace.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ImageFace.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ImageFace.BackgroundImage")));
-            this.ImageFace.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ImageFace.Location = new System.Drawing.Point(148, 98);
-            this.ImageFace.Name = "ImageFace";
-            this.ImageFace.Size = new System.Drawing.Size(84, 93);
-            this.ImageFace.TabIndex = 0;
-            this.ImageFace.TabStop = false;
-            this.ImageFace.Click += new System.EventHandler(this.ImageFace_Click);
             // 
             // btnCamera
             // 
@@ -413,9 +407,17 @@ namespace IndentifiedFace
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
+            // toolTip1
+            // 
+            this.toolTip1.AutoPopDelay = 5000;
+            this.toolTip1.InitialDelay = 0;
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.ReshowDelay = 100;
+            this.toolTip1.ShowAlways = true;
+            // 
             // frmAddNewEmployee
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(823, 693);
@@ -436,9 +438,9 @@ namespace IndentifiedFace
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageBoxFrameGrabber1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageFace)).EndInit();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

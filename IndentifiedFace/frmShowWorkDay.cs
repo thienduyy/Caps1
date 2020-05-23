@@ -58,9 +58,9 @@ namespace IndentifiedFace
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = @"SELECT tblEmployee.fldEmployeeID as 'Mã Nhân Viên',tblEmployee.fldFirstName as 'Họ',
-                                tblEmployee.fldLastName as 'Tên',tblEmployee.fldGroupID as 'Nhóm',tblEmployeeWorkTmp.fldWorkName as 'Công Việc',
-                                tblEmployeeWorkTmp.fldEmployeeWorkDate as 'Ngày Làm Việc'
+            cmd.CommandText = @"SELECT tblEmployee.fldEmployeeID as 'EmployeeID',tblEmployee.fldFirstName as 'FirstName',
+                                tblEmployee.fldLastName as 'LastName',tblEmployee.fldGroupID as 'Department',tblEmployeeWorkTmp.fldWorkName as 'Work Name',
+                                tblEmployeeWorkTmp.fldEmployeeWorkDate as 'Work Day'
                                 FROM tblEmployee
                                 INNER JOIN (
                                 SELECT tblWork.fldWorkID,tblWork.fldWorkName,tblEmployeeWork.fldEmployeeID,tblEmployeeWork.fldEmployeeWorkDate 
@@ -138,6 +138,11 @@ namespace IndentifiedFace
         }
 
         private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dgvDS_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
         }

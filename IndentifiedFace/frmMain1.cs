@@ -42,10 +42,11 @@ namespace IndentifiedFace
             dr = MessageBox.Show("Do You Want Exit Program ?", "Yes", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
-                frmLogin lg = new frmLogin(applicationConfiguration);
-                lg.Show();
-                lg.FormClosed += new FormClosedEventHandler(lg_FormClosed);
-                this.Hide();
+                frmTimekeeping tkp = new frmTimekeeping(applicationConfiguration);
+                tkp.Show();
+                    this.Close();
+                
+
             }
             else
             {
@@ -56,7 +57,7 @@ namespace IndentifiedFace
 
         private void lg_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Show();
+            //this.Show();
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -147,8 +148,8 @@ namespace IndentifiedFace
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            frmTimekeeping diemdanh = new frmTimekeeping(applicationConfiguration);
-            diemdanh.Show();
+            frmConfig config = new frmConfig(applicationConfiguration);
+            config.Show();
         }
 
         private void frmMain1_Load(object sender, EventArgs e)

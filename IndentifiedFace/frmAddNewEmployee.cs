@@ -201,17 +201,9 @@ namespace IndentifiedFace
                             SqlCommand cmd = new SqlCommand();
                             cmd.Connection = con;
                             cmd.CommandType = CommandType.Text;
-                            cmd.CommandText = @"SELECT  fldEmployeeID as N'" + applicationConfiguration.getLanguagePackage().getMemberCodeAlias()
-                                    + @"',fldFirstName as N'" + applicationConfiguration.getLanguagePackage().getLastNameAlias()
-                                    + @"',fldLastName as N'" + applicationConfiguration.getLanguagePackage().getFirstNameAlias()
-                                    + @"',
-                                            (Case fldSex when 'True' then N'" + applicationConfiguration.getLanguagePackage().getMaleAlias()
-                                    + @"' else N'" + applicationConfiguration.getLanguagePackage().getFemaleAlias()
-                                    + @"' end) as N'" + applicationConfiguration.getLanguagePackage().getSexAlias()
-                                    + @"',
-                                             fldBirth as N'" + applicationConfiguration.getLanguagePackage().getBirthAlias()
-                                    + @"', fldGroupName as N'" + applicationConfiguration.getLanguagePackage().getClassAlias()
-                                    + @"'
+                            cmd.CommandText = @"SELECT  fldEmployeeID as 'EmployeeID',fldFirstName as 'FirstName',fldLastName as 'LastName',
+                                            (Case fldSex when 'True' then 'Male' else 'Female' end) as N'Gender',
+                                             fldBirth as 'Birthday', fldGroupName as 'Department'
                                                                      FROM   tblGroup INNER JOIN tblEmployee 
                                                                      ON tblGroup.fldGroupID = tblEmployee.fldGroupID
                                                                       where fldEmployeeID= @EmployeeID";
@@ -347,6 +339,16 @@ namespace IndentifiedFace
             
         }
 
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void frmAddNewEmployee_Load_1(object sender, EventArgs e)
         {
 
@@ -385,9 +387,9 @@ namespace IndentifiedFace
                         row["fldFirstName"] = txtHo.Text; 
                         row["fldLastName"] = txtTen.Text;
                         row["fldGroupID"] = cbGroup.SelectedValue;
-                        if (cbGioitinh.Text == applicationConfiguration.getLanguagePackage().getMaleAlias())
+                        if (cbGioitinh.Text == "Male")
                             row["fldSex"] = 1;
-                        else if (cbGioitinh.Text == applicationConfiguration.getLanguagePackage().getMaleAlias())
+                        else if (cbGioitinh.Text == "Female")
                             row["fldSex"] = 0;
                         row["fldBirth"] = dtBirth.Value;
                         int x = trainingImages.ToArray().Length;

@@ -83,8 +83,10 @@ namespace IndentifiedFace
             if (dt.Rows.Count > 0)
             {
                 frmMain1 main = new frmMain1(applicationConfiguration);
+                //frmTimekeeping tkp = new frmTimekeeping(applicationConfiguration);
                 main.Show();
-                Hide();
+                //tkp.Close();
+                this.Close();
             }
             else
             {
@@ -97,14 +99,17 @@ namespace IndentifiedFace
                     Close();
                     Dispose();
                     disconnect();
-                    System.Windows.Forms.Application.Exit();
+                    this.Close();
                 }
             }
+          
         }
 
         private void btExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
+            frmTimekeeping tkp = new frmTimekeeping(applicationConfiguration);
+            tkp.Show(); 
         }
 
         private void Login_Load(object sender, EventArgs e)

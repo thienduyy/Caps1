@@ -59,7 +59,6 @@ namespace IndentifiedFace
             this.lbTime = new System.Windows.Forms.Label();
             this.lbDate = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -106,7 +105,6 @@ namespace IndentifiedFace
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.btnAdd);
             this.panel2.Controls.Add(this.btnHome);
@@ -211,7 +209,7 @@ namespace IndentifiedFace
             this.lb_EmplPresent.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lb_EmplPresent.Location = new System.Drawing.Point(20, 45);
             this.lb_EmplPresent.Name = "lb_EmplPresent";
-            this.lb_EmplPresent.Size = new System.Drawing.Size(45, 32);
+            this.lb_EmplPresent.Size = new System.Drawing.Size(64, 47);
             this.lb_EmplPresent.TabIndex = 2;
             this.lb_EmplPresent.Text = "10";
             this.lb_EmplPresent.Click += new System.EventHandler(this.label3_Click);
@@ -232,7 +230,7 @@ namespace IndentifiedFace
             this.label2.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label2.Location = new System.Drawing.Point(6, 8);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(139, 20);
+            this.label2.Size = new System.Drawing.Size(206, 25);
             this.label2.TabIndex = 0;
             this.label2.Text = "Employee Present";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -255,7 +253,7 @@ namespace IndentifiedFace
             this.lb_EmplAbsent.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lb_EmplAbsent.Location = new System.Drawing.Point(18, 45);
             this.lb_EmplAbsent.Name = "lb_EmplAbsent";
-            this.lb_EmplAbsent.Size = new System.Drawing.Size(45, 32);
+            this.lb_EmplAbsent.Size = new System.Drawing.Size(64, 47);
             this.lb_EmplAbsent.TabIndex = 3;
             this.lb_EmplAbsent.Text = "10";
             // 
@@ -275,7 +273,7 @@ namespace IndentifiedFace
             this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label1.Location = new System.Drawing.Point(6, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 20);
+            this.label1.Size = new System.Drawing.Size(204, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Employee Absent";
             // 
@@ -297,7 +295,7 @@ namespace IndentifiedFace
             this.lb_TotalWork.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lb_TotalWork.Location = new System.Drawing.Point(20, 43);
             this.lb_TotalWork.Name = "lb_TotalWork";
-            this.lb_TotalWork.Size = new System.Drawing.Size(45, 32);
+            this.lb_TotalWork.Size = new System.Drawing.Size(64, 47);
             this.lb_TotalWork.TabIndex = 3;
             this.lb_TotalWork.Text = "10";
             // 
@@ -317,7 +315,7 @@ namespace IndentifiedFace
             this.label4.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label4.Location = new System.Drawing.Point(6, 8);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(106, 20);
+            this.label4.Size = new System.Drawing.Size(159, 25);
             this.label4.TabIndex = 0;
             this.label4.Text = "Total Of Work";
             this.label4.Click += new System.EventHandler(this.label4_Click);
@@ -340,7 +338,7 @@ namespace IndentifiedFace
             this.lb_WorkCompleted.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lb_WorkCompleted.Location = new System.Drawing.Point(18, 43);
             this.lb_WorkCompleted.Name = "lb_WorkCompleted";
-            this.lb_WorkCompleted.Size = new System.Drawing.Size(45, 32);
+            this.lb_WorkCompleted.Size = new System.Drawing.Size(64, 47);
             this.lb_WorkCompleted.TabIndex = 4;
             this.lb_WorkCompleted.Text = "10";
             // 
@@ -360,7 +358,7 @@ namespace IndentifiedFace
             this.label5.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label5.Location = new System.Drawing.Point(6, 8);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(134, 20);
+            this.label5.Size = new System.Drawing.Size(199, 25);
             this.label5.TabIndex = 0;
             this.label5.Text = "Work Completed";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -372,7 +370,7 @@ namespace IndentifiedFace
             this.lbTime.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.lbTime.Location = new System.Drawing.Point(454, 458);
             this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(122, 51);
+            this.lbTime.Size = new System.Drawing.Size(178, 73);
             this.lbTime.TabIndex = 9;
             this.lbTime.Text = "Time";
             this.lbTime.Click += new System.EventHandler(this.lbTime_Click);
@@ -384,7 +382,7 @@ namespace IndentifiedFace
             this.lbDate.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.lbDate.Location = new System.Drawing.Point(340, 540);
             this.lbDate.Name = "lbDate";
-            this.lbDate.Size = new System.Drawing.Size(117, 51);
+            this.lbDate.Size = new System.Drawing.Size(172, 73);
             this.lbDate.TabIndex = 10;
             this.lbDate.Text = "Date";
             // 
@@ -393,28 +391,9 @@ namespace IndentifiedFace
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // button3
-            // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(-3, 268);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(261, 47);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "                       Setting";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button2_Click_1);
-            // 
             // frmMain1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(908, 661);
@@ -503,6 +482,5 @@ namespace IndentifiedFace
         private System.Windows.Forms.Label lbTime;
         private System.Windows.Forms.Label lbDate;
         private System.Windows.Forms.Timer timer1;
-        internal System.Windows.Forms.Button button3;
     }
 }

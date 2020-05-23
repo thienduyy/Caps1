@@ -57,9 +57,9 @@ namespace IndentifiedFace
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = @"SELECT tblEmployee.fldEmployeeID as 'Mã Nhân Viên',tblEmployee.fldFirstName as 'Họ',
-                                tblEmployee.fldLastName as 'Tên',tblEmployee.fldGroupID as 'Nhóm',tblEmployeeWork.fldWorkName as 'Công Việc',
-                                tblEmployeeWork.fldEmployeeWorkDate as 'Ngày Làm Việc'
+            cmd.CommandText = @"SELECT tblEmployee.fldEmployeeID as 'EmployeeID',tblEmployee.fldFirstName as 'FirstName',
+                                tblEmployee.fldLastName as 'LastName',tblEmployee.fldGroupID as 'Department',tblEmployeeWork.fldWorkName as 'WorkName',
+                                tblEmployeeWork.fldEmployeeWorkDate as 'Work Day'
                                 FROM tblEmployee
                                 INNER JOIN (
                                 SELECT tblWork.fldWorkID,tblWork.fldWorkName,tblEmployeeWork.fldEmployeeID,tblEmployeeWork.fldEmployeeWorkDate 
@@ -118,7 +118,7 @@ namespace IndentifiedFace
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
             //cmd.CommandText = @"SELECT fldWorkName as N'Công Việc',(Case fldWorkStatus when 'True' then N'Đã có người làm' else N'Chưa có người làm' end) as N'Trạng Thái' FROM Employee.dbo.tblWork";
-            cmd.CommandText = @"SELECT w.fldWorkName as N'Công Việc',w.fldWorkStatus as 'Trạng Thái'  
+            cmd.CommandText = @"SELECT w.fldWorkName as N'Work Name',w.fldWorkStatus as 'Status'  
                                 FROM tblWork w ";
 
             da.SelectCommand = cmd;
@@ -136,9 +136,9 @@ namespace IndentifiedFace
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = @"SELECT tblEmployee.fldEmployeeID as 'Mã Nhân Viên',tblEmployee.fldFirstName as 'Họ',
-                                tblEmployee.fldLastName as 'Tên',tblEmployee.fldGroupID as 'Nhóm',tblEmployeeWork.fldWorkName as 'Công Việc',
-                                tblEmployeeWork.fldEmployeeWorkDate as 'Ngày Làm Việc'
+            cmd.CommandText = @"SELECT tblEmployee.fldEmployeeID as 'EmployeeID',tblEmployee.fldFirstName as 'FirstName',
+                                tblEmployee.fldLastName as 'FirstName',tblEmployee.fldGroupID as 'Department',tblEmployeeWork.fldWorkName as 'WorkName',
+                                tblEmployeeWork.fldEmployeeWorkDate as 'Work Day'
                                 FROM tblEmployee
                                 INNER JOIN (
                                 SELECT tblWork.fldWorkID,tblWork.fldWorkName,tblEmployeeWork.fldEmployeeID,tblEmployeeWork.fldEmployeeWorkDate 

@@ -57,9 +57,9 @@ namespace IndentifiedFace
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = @"SELECT DISTINCT b.fldEmployeeID, b.fldFirstName, b.fldLastName
-                                    , (Case b.fldSex when 'True' then N'Nam' else N'Nữ' end)
-                                    ,b.fldBirth, a.fldGroupName 
+            cmd.CommandText = @"SELECT DISTINCT b.fldEmployeeID as 'EmployeeID', b.fldFirstName as 'FirstName', b.fldLastName as 'LastName'
+                                    , (Case b.fldSex when 'True' then N'Male' else N'Female' end)
+                                    ,b.fldBirth as 'Birthday', a.fldGroupName as 'Department'
                                      FROM tblGroup a INNER JOIN tblEmployee b
                                             ON a.fldGroupID = b.fldGroupID INNER JOIN tblTimekeeping c
                                             ON b.fldEmployeeID = c.fldEmployeeID  WHERE c.tDatetime >= '" + Convert.ToDateTime(dtpFrom.Value) + "' and c.tDatetime <= '" + Convert.ToDateTime(dtpTo.Value) + "' and CONCAT(b.fldEmployeeID,b.fldFirstName,b.fldLastName,b.fldBirth,a.fldGroupName) LIKE '%" + valueToSearch + "%'";
@@ -83,10 +83,10 @@ namespace IndentifiedFace
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = @"SELECT DISTINCT b.fldEmployeeID,
-                                        b.fldFirstName,b.fldLastName,
+            cmd.CommandText = @"SELECT DISTINCT b.fldEmployeeID as 'EmployeeID',
+                                        b.fldFirstName as 'FirstName',b.fldLastName as 'LastName',
                                     (Case b.fldSex when 'True' then N'Nam' else N'Nữ' end)
-                                    ,b.fldBirth, a.fldGroupName
+                                    ,b.fldBirth as 'Birthday', a.fldGroupName as 'Department'
                                      FROM   tblGroup a INNER JOIN tblEmployee b
                                             ON a.fldGroupID = b.fldGroupID INNER JOIN tblTimekeeping c
                                             ON b.fldEmployeeID = c.fldEmployeeID  WHERE c.tDatetime between ('" + Convert.ToDateTime(dtpFrom.Value) + "') and ('" + Convert.ToDateTime(dtpTo.Value) + "') ";
@@ -109,7 +109,7 @@ namespace IndentifiedFace
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = @"SELECT fldWorkName as N'Công Việc',fldWorkStatus as 'Trạng Thái' FROM Employee.dbo.tblWork";
+            cmd.CommandText = @"SELECT fldWorkName as N'Work Name',fldWorkStatus as 'Status' FROM Employee.dbo.tblWork";
 
             da.SelectCommand = cmd;
             da.Fill(dt1);
@@ -144,9 +144,9 @@ namespace IndentifiedFace
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             cmd.CommandType = CommandType.Text;//,,
-            cmd.CommandText = @"SELECT tk.fldEmployeeID, e.fldFirstName, e.fldLastName,g.fldGroupName, COUNT(tk.fldEmployeeID) as 'Working Days'
+            cmd.CommandText = @"SELECT tk.fldEmployeeID as 'EmployeeID', e.fldFirstName as 'FirstName', e.fldLastName as 'LastName',g.fldGroupName as 'Department', COUNT(DISTINCT tk.fldEmployeeID) as 'Working Days'
                                         From tblTimekeeping tk , tblEmployee e,tblGroup g
-                                         WHERE tk.fldEmployeeID = e.fldEmployeeID and e.fldGroupID = g.fldGroupID and tk.tDatetime >= '" + Convert.ToDateTime(dtpFrom.Value) + "' and tk.tDatetime <= '" + Convert.ToDateTime(dtpTo.Value) + "' and e.fldLastName LIKE '%" + valueToSearch + "%' Group by tk.fldEmployeeID, e.fldFirstName, e.fldLastName,g.fldGroupName";
+                                         WHERE tk.fldEmployeeID = e.fldEmployeeID and e.fldGroupID = g.fldGroupID and tk.tDatetime >= '" + Convert.ToDateTime(dtpFrom.Value) + "' and tk.tDatetime <= '" + Convert.ToDateTime(dtpTo.Value) + "' and e.fldLastName LIKE '%" + valueToSearch + "%' Group by tk.fldEmployeeID, e.fldFirstName, e.fldLastName,g.fldGroupName Order By tk.fldEmployeeID";
 
 
             da.SelectCommand = cmd;
@@ -170,7 +170,8 @@ namespace IndentifiedFace
         private void Form1_Load(object sender, EventArgs e)
         {
             //GetList();
-            fillcombo();            
+            fillcombo();
+            dtpTo.Value = DateTime.Now;
             label2.Enabled = false;
             GetListOne("");
 

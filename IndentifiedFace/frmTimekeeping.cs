@@ -43,7 +43,7 @@ namespace IndentifiedFace
         List<String> EmployeeGroupID = new List<string>();
         string countEmployee = "";
         string name = "", LoadFaces, str;
-        MCvFont font = new MCvFont(FONT.CV_FONT_HERSHEY_TRIPLEX, 0.5d, 0.5d);
+        MCvFont font = new MCvFont(FONT.CV_FONT_HERSHEY_TRIPLEX, 0.5d, 0.5d); //Tạo phông chữ tỷ lệ ngang dọc
         // khai báo Presence là 1 mảng danh sách các employee hiện diện
         List<String> Presence = new List<string>();
         // khai báo Absence là 1 mảng danh sách các employee vắng mặt
@@ -75,22 +75,11 @@ namespace IndentifiedFace
             // khởi tạo biến tham chiếu command để thao tác với csdl
             SqlCommand command = new SqlCommand();
             command.Connection = con;
-            command.CommandType = CommandType.Text;
-           
-            //da.SelectCommand = command;
-            //da.Fill(dtGroup);            
+            command.CommandType = CommandType.Text;                   
             // truy vấn lấy fldEmployeeID,fldFirstName,fldLastName ... từ bảng tblGroup kết hợp với tblEmployee điều kiện là fldGroupID của 2 bảng bằng nhau
-            command.CommandText = @"SELECT  fldEmployeeID as N'" + applicationConfiguration.getLanguagePackage().getMemberCodeAlias()
-                                    + @"',fldFirstName as N'" + applicationConfiguration.getLanguagePackage().getLastNameAlias()
-                                    + @"',fldLastName as N'" + applicationConfiguration.getLanguagePackage().getFirstNameAlias()
-                                    + @"',
-                                            (Case fldSex when 'True' then N'" + applicationConfiguration.getLanguagePackage().getMaleAlias()
-                                    + @"' else N'" + applicationConfiguration.getLanguagePackage().getFemaleAlias()
-                                    + @"' end) as N'" + applicationConfiguration.getLanguagePackage().getSexAlias()
-                                    + @"',
-                                             fldBirth as N'" + applicationConfiguration.getLanguagePackage().getBirthAlias()
-                                    + @"', fldGroupName as N'" + applicationConfiguration.getLanguagePackage().getClassAlias()
-                                    + @",lastdate'
+            command.CommandText = @"SELECT  fldEmployeeID as 'EmployeeID',fldFirstName as 'FirstName',fldLastName as 'LastName',
+                                            (Case fldSex when 'True' then 'Male' else 'Female' end) as N'Gender',
+                                             fldBirth as 'Birthday', fldGroupName as 'Department',lastdate
                                              FROM   tblGroup INNER JOIN tblEmployee 
                                              ON tblGroup.fldGroupID = tblEmployee.fldGroupID";
             da.SelectCommand = command;
@@ -123,17 +112,9 @@ namespace IndentifiedFace
                     "Cảnh Báo 1", MessageBoxButtons.OK, MessageBoxIcon.Error);*/
             }
             // truy vấn lấy fldEmployeeID,fldFirstName,fldLastName ... từ bảng tblGroup kết hợp với tblEmployee trên cơ sở là fldGroupID của 2 bảng bằng nhau với điều kiện là fldGroupName giống(like) biến group bắt được
-            command.CommandText = @"SELECT  fldEmployeeID as N'" + applicationConfiguration.getLanguagePackage().getMemberCodeAlias()
-                                    + @"',fldFirstName as N'" + applicationConfiguration.getLanguagePackage().getLastNameAlias()
-                                    + @"',fldLastName as N'" + applicationConfiguration.getLanguagePackage().getFirstNameAlias()
-                                    + @"',
-                                            (Case fldSex when 'True' then N'" + applicationConfiguration.getLanguagePackage().getMaleAlias()
-                                    + @"' else N'" + applicationConfiguration.getLanguagePackage().getFemaleAlias()
-                                    + @"' end) as N'" + applicationConfiguration.getLanguagePackage().getSexAlias()
-                                    + @"',
-                                             fldBirth as N'" + applicationConfiguration.getLanguagePackage().getBirthAlias()
-                                    + @"', fldGroupName as N'" + applicationConfiguration.getLanguagePackage().getClassAlias()
-                                    + @"',fldImage as 'Hình ảnh'
+            command.CommandText = @"SELECT  fldEmployeeID as 'EmployeeID',fldFirstName as 'FirstName',fldLastName as 'LastName',
+                                            (Case fldSex when 'True' then 'Male' else 'Female' end) as N'Gender',
+                                             fldBirth as 'Birthday', fldGroupName as 'Department',fldImage as 'Image'
                                              FROM   tblGroup INNER JOIN tblEmployee 
                                              ON tblGroup.fldGroupID = tblEmployee.fldGroupID";
             //command.Parameters.Add("@Group", SqlDbType.NVarChar, 50).Value = str;
@@ -197,13 +178,8 @@ namespace IndentifiedFace
         {
 
             //==========================
-            /*test = false;
-            txtmanv.Text = null;
-            txtHo.Text = null;
-            txtTen.Text = null;
-            txtPhong.Text = null;
-            dpBirth.Format = DateTimePickerFormat.Custom;
-            dpBirth.CustomFormat = "dd/MM/yyyy";*/
+            test = false;
+            
             //==========================
             //str = cbGroup.Text;
             dt0.Clear();
@@ -219,17 +195,9 @@ namespace IndentifiedFace
             SqlCommand command = new SqlCommand();
             command.Connection = con;
             command.CommandType = CommandType.Text;
-            command.CommandText = @"SELECT  fldEmployeeID as N'" + applicationConfiguration.getLanguagePackage().getMemberCodeAlias()
-                                    + @"',fldFirstName as N'" + applicationConfiguration.getLanguagePackage().getLastNameAlias()
-                                    + @"',fldLastName as N'" + applicationConfiguration.getLanguagePackage().getFirstNameAlias()
-                                    + @"',
-                                            (Case fldSex when 'True' then N'" + applicationConfiguration.getLanguagePackage().getMaleAlias()
-                                    + @"' else N'" + applicationConfiguration.getLanguagePackage().getFemaleAlias()
-                                    + @"' end) as N'" + applicationConfiguration.getLanguagePackage().getSexAlias()
-                                    + @"',
-                                             fldBirth as N'" + applicationConfiguration.getLanguagePackage().getBirthAlias()
-                                    + @"', fldGroupName as N'" + applicationConfiguration.getLanguagePackage().getClassAlias()
-                                    + @"'
+            command.CommandText = @"SELECT  fldEmployeeID as 'EmployeeID',fldFirstName as 'FirstName',fldLastName as 'LastName',
+                                            (Case fldSex when 'True' then 'Male' else 'Female' end) as N'Gender',
+                                             fldBirth as 'Birthday', fldGroupName as 'Department'
                                                      FROM   tblGroup INNER JOIN tblEmployee
                                                      ON tblGroup.fldGroupID = tblEmployee.fldGroupID";
             //command.Parameters.Add("@Group", SqlDbType.NVarChar, 50).Value = cbGroup.Text;
@@ -273,10 +241,10 @@ namespace IndentifiedFace
         // Hàm này thực hiện kiểm tra xem cái chuỗi st đưa vào có trả về dữ liệu là đúng hay sai, hay nói cách khác hàm này thực hiện kiểm tra việc đúng sai của dữ liệu
         private Boolean Check(string st)
         {
-            for (int i = 0; i < EmployeeGroupID.Count; i++)
+            for (int i = 0; i < EmployeeID.Count; i++)
             {
 
-                if (st == EmployeeGroupID[i])
+                if (st == EmployeeID[i])
                 {
                     test = true;
                     break;
@@ -296,23 +264,27 @@ namespace IndentifiedFace
                 currentFrame = grabber.QueryFrame().Resize(350, 335, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
                 // khai báo đối tượng gray này để quy định cái ảnh mà mình nhận được nằm trong khung
                 gray = currentFrame.Convert<Gray, Byte>();
-                // facesDetected là khuôn hình ảnh nằm trong khung và sẽ có dạng theo quy định của gray
+                // Face Detector sau khi thực hiện dòng lệnh này trả về 1 ảnh
                 MCvAvgComp[][] facesDetected = gray.DetectHaarCascade(haar, 1.1, 10, Emgu.CV.CvEnum.HAAR_DETECTION_TYPE.DO_CANNY_PRUNING, new Size(20, 20));
 
+                //Action for each elements detected
                 foreach (MCvAvgComp f in facesDetected[0])
                 {
+                    // copy kết quả đã nhận diện vào result
                     result = currentFrame.Copy(f.rect).Convert<Gray, byte>().Resize(100, 100, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+                    //draw the detector in the 0th (gray) channel with blue color
                     currentFrame.Draw(f.rect, new Bgr(Color.Red), 2);
                     if (trainingImages.ToArray().Length != 0)
                     {
-
+                        //Để nhận dạng khuôn mặt với số lượng hình ảnh trained
                         MCvTermCriteria termCrit = new MCvTermCriteria(ContTrain, 0.001);
+                        //Nhận dạng khuôn mặt
                         EigenObjectRecognizer recognizer = new EigenObjectRecognizer(trainingImages.ToArray(), EmployeeID.ToArray(), 3000, ref termCrit);
                         name = recognizer.Recognize(result);
                         Check(name);
-                        if (test == true)
+                        if (test == true) 
                         {
-                            double StopValue = Convert.ToDouble(System.Configuration.ConfigurationSettings.AppSettings["StopValue"]);
+                            //double StopValue = Convert.ToDouble(System.Configuration.ConfigurationSettings.AppSettings["StopValue"]);
                             // cái này là hiển thị ở trên khung hình màu đỏ gồm có số ID, cái thứ 2 là font chữ, cái thứ 3 là vị trí hiển thị, cái cuối là màu sắc
                             currentFrame.Draw("Employee ID:" + name, ref font, new Point(f.rect.X - 2, f.rect.Y - 2), new Bgr(Color.White));
 
@@ -321,17 +293,9 @@ namespace IndentifiedFace
                             cmd.Connection = con;
                             cmd.CommandType = CommandType.Text;
                             // truy vấn lấy thông tin của Employee trong csdl
-                            cmd.CommandText = @"SELECT  lastdate,fldEmployeeID as N'" + applicationConfiguration.getLanguagePackage().getMemberCodeAlias()
-                                    + @"',fldFirstName as N'" + applicationConfiguration.getLanguagePackage().getLastNameAlias()
-                                    + @"',fldLastName as N'" + applicationConfiguration.getLanguagePackage().getFirstNameAlias()
-                                    + @"',
-                                            (Case fldSex when 'True' then N'" + applicationConfiguration.getLanguagePackage().getMaleAlias()
-                                    + @"' else N'" + applicationConfiguration.getLanguagePackage().getFemaleAlias()
-                                    + @"' end) as N'" + applicationConfiguration.getLanguagePackage().getSexAlias()
-                                    + @"',
-                                             fldBirth as N'" + applicationConfiguration.getLanguagePackage().getBirthAlias()
-                                    + @"', fldGroupName as N'" + applicationConfiguration.getLanguagePackage().getClassAlias()
-                                    + @"'
+                            cmd.CommandText = @"SELECT  fldEmployeeID as 'EmployeeID',fldFirstName as 'FirstName',fldLastName as 'LastName',
+                                            (Case fldSex when 'True' then 'Male' else 'Female' end) as N'Gender',
+                                             fldBirth as 'Birthday', fldGroupName as 'Department'
                                                                      FROM   tblGroup INNER JOIN tblEmployee 
                                                                      ON tblGroup.fldGroupID = tblEmployee.fldGroupID
                                                                       where fldEmployeeID= @EmployeeID";
@@ -339,45 +303,14 @@ namespace IndentifiedFace
                             da.SelectCommand = cmd;
 
                             // Hiển thị thông tin của Employee vừa lấy được ở trên ra bảng
-                            da.Fill(dt1);
-
-                            /*grvdata.Columns[4].DefaultCellStyle.Format = "dd/MM/yyyy";
-                            txtmanv.DataBindings.Clear();
-                            txtmanv.DataBindings.Add("Text", dt1, applicationConfiguration.getLanguagePackage().getMemberCodeAlias());
-                            txtHo.DataBindings.Clear();
-                            txtHo.DataBindings.Add("Text", dt1, applicationConfiguration.getLanguagePackage().getLastNameAlias());
-                            txtTen.DataBindings.Clear();
-                            txtTen.DataBindings.Add("Text", dt1, applicationConfiguration.getLanguagePackage().getFirstNameAlias());
-                            txtPhong.DataBindings.Clear();
-                            txtPhong.DataBindings.Add("Text", dt1, applicationConfiguration.getLanguagePackage().getClassAlias());
-                           txtGioitinh.DataBindings.Clear();
-                           txtGioitinh.DataBindings.Add("Text", dt1, applicationConfiguration.getLanguagePackage().getSexAlias());
-                           dpBirth.DataBindings.Clear();
-                           dpBirth.DataBindings.Add("Text", dt1, applicationConfiguration.getLanguagePackage().getBirthAlias());*/
-                            //btnCallTheRoll_Click(sender, e);
+                            da.Fill(dt1);                         
                             DateTime date = Convert.ToDateTime(dt1.Rows[0]["lastdate"]);
                             TimeSpan diff = DateTime.Now - date;
-                            double seconds = diff.TotalSeconds;
-                            if (seconds > StopValue)
-                            {
-                               /* SqlCommand cmd2 = new SqlCommand();
-                                cmd2.Connection = con;
-                                cmd2.CommandType = CommandType.Text;
-                                // truy vấn lấy thông tin của Employee trong csdl
-                                cmd2.CommandText = "update tblEmployee set lastdate=GETDATE() where fldEmployeeID=" + dt1.Rows[0][1].ToString();
-                                cmd2.ExecuteNonQuery();
-                                MessageBox.Show("Thông báo", "Quá thời gian quy định", MessageBoxButtons.OK, MessageBoxIcon.Warning);*/
-                            }
+                            double seconds = diff.TotalSeconds;                           
                         }
                         else
                         {
-                            /*name = "";
-                            txtmanv.Text = null;
-                            txtHo.Text = null;
-                            txtTen.Text = null;
-                            txtPhong.Text = null;
-                            txtGioitinh.Text = null;
-                            dpBirth.Value = Convert.ToDateTime("dd/MM/yyyy");*/
+                            name = ""; 
                         }
 
                     }
@@ -393,9 +326,17 @@ namespace IndentifiedFace
 
         private void btnexit_Click(object sender, EventArgs e)
         {
+
+            DialogResult dr = MessageBox.Show("Total Employee: " + dt0.Rows.Count + "\n Employee Present: " + Presence.Count + "\n Employee Absent: " + Absence.Count, "Information !", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+           if (dr == DialogResult.OK)
+            {
+                Application.Exit();
+            }
+            else
+            {
+
+            }
             
-            MessageBox.Show("Tổng số nhân viên: " + dt0.Rows.Count + "\n Số nhân viên có mặt: " + Presence.Count + "\n Số nhân viên vắng mặt: " + Absence.Count, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Application.Exit();
         }
 
         private void Timekeeping()
@@ -406,12 +347,12 @@ namespace IndentifiedFace
                 if (Presence.Count == 0)
                 {
                     Presence.Add(name.ToString());
-                    for (int i = 0; i < EmployeeGroupID.Count; i++)
+                    for (int i = 0; i < EmployeeID.Count; i++)
                     {
-                        if (EmployeeGroupID[i].ToString() != name)
+                        if (EmployeeID[i].ToString() != name)
                         {
-                            Absence.Add(EmployeeGroupID[i].ToString());
-                            Temporary.Add(EmployeeGroupID[i].ToString());
+                            Absence.Add(EmployeeID[i].ToString());
+                            Temporary.Add(EmployeeID[i].ToString());
                         }
                     }
                 }
@@ -475,17 +416,7 @@ namespace IndentifiedFace
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = @"SELECT  fldEmployeeID as N'" + applicationConfiguration.getLanguagePackage().getMemberCodeAlias()
-                                    + @"',fldFirstName as N'" + applicationConfiguration.getLanguagePackage().getLastNameAlias()
-                                    + @"',fldLastName as N'" + applicationConfiguration.getLanguagePackage().getFirstNameAlias()
-                                    + @"',
-                                            (Case fldSex when 'True' then N'" + applicationConfiguration.getLanguagePackage().getMaleAlias()
-                                    + @"' else N'" + applicationConfiguration.getLanguagePackage().getFemaleAlias()
-                                    + @"' end) as N'" + applicationConfiguration.getLanguagePackage().getSexAlias()
-                                    + @"',
-                                             fldBirth as N'" + applicationConfiguration.getLanguagePackage().getBirthAlias()
-                                    + @"', fldGroupName as N'" + applicationConfiguration.getLanguagePackage().getClassAlias()
-                                    + @"'
+                cmd.CommandText = @"SELECT  fldEmployeeID as 'EmployeeID',fldFirstName as 'FirstName',fldLastName as 'LastName', fldGroupName as 'Department'
                                             FROM   tblGroup INNER JOIN tblEmployee 
                                             ON tblGroup.fldGroupID = tblEmployee.fldGroupID
                                             where fldEmployeeID= @EmployeeID";
@@ -511,7 +442,7 @@ namespace IndentifiedFace
                     //cmd2.CommandText = @"INSERT INTO tblTimekeeping(tDatetime,fldEmployeeID) VALUES('" + date + "','" + dtbl.Rows[0]["fldEmployeeID"] + "')";
                     cmd2.CommandText = @"INSERT INTO tblTimekeeping(tDatetime,fldEmployeeID) VALUES(getdate(),'" + dtbl.Rows[0]["fldEmployeeID"] + "')";
                     cmd2.ExecuteNonQuery();
-                    grvData2.DataSource = dt2;
+                    grv_Data2.DataSource = dt2;
                     ///
                     // Phân công công việc
                     ///
@@ -530,17 +461,7 @@ namespace IndentifiedFace
                 SqlCommand command = new SqlCommand();
                 command.Connection = con;
                 command.CommandType = CommandType.Text;
-                command.CommandText = @"SELECT  fldEmployeeID as N'" + applicationConfiguration.getLanguagePackage().getMemberCodeAlias()
-                                    + @"',fldFirstName as N'" + applicationConfiguration.getLanguagePackage().getLastNameAlias()
-                                    + @"',fldLastName as N'" + applicationConfiguration.getLanguagePackage().getFirstNameAlias()
-                                    + @"',
-                                            (Case fldSex when 'True' then N'" + applicationConfiguration.getLanguagePackage().getMaleAlias()
-                                    + @"' else N'" + applicationConfiguration.getLanguagePackage().getFemaleAlias()
-                                    + @"' end) as N'" + applicationConfiguration.getLanguagePackage().getSexAlias()
-                                    + @"',
-                                             fldBirth as N'" + applicationConfiguration.getLanguagePackage().getBirthAlias()
-                                    + @"', fldGroupName as N'" + applicationConfiguration.getLanguagePackage().getClassAlias()
-                                    + @"'
+                command.CommandText = @"SELECT  fldEmployeeID as 'EmployeeID',fldFirstName as 'FirstName',fldLastName as 'LastName', fldGroupName as 'Department'
                                     FROM   tblGroup INNER JOIN tblEmployee 
                                     ON tblGroup.fldGroupID = tblEmployee.fldGroupID
                                     where fldEmployeeID= @EmployeeID";
@@ -549,7 +470,7 @@ namespace IndentifiedFace
                 da.Fill(dt3);
                 if (dt3.Rows.Count > 0)
                 {
-                    grvdata3.DataSource = dt3;
+                    grv_Data3.DataSource = dt3;
                 }
             }
             
@@ -647,22 +568,22 @@ namespace IndentifiedFace
                 // changing the name of active sheet
                 worksheet.Name = "Exported from gridview";
                 // storing header part in Excel
-                for (int i = 1; i < grvData2.Columns.Count + 1; i++)
+                for (int i = 1; i < grv_Data2.Columns.Count + 1; i++)
                 {
-                    worksheet.Cells[1, i] = grvData2.Columns[i - 1].HeaderText;
+                    worksheet.Cells[1, i] = grv_Data2.Columns[i - 1].HeaderText;
                 }
                 // storing Each row and column value to excel sheet
 
-                for (int i = 0; i < grvData2.Rows.Count - 1; i++)
+                for (int i = 0; i < grv_Data2.Rows.Count - 1; i++)
                 {
-                    for (int j = 0; j < grvData2.Columns.Count; j++)
+                    for (int j = 0; j < grv_Data2.Columns.Count; j++)
                     {
-                        worksheet.Cells[i + 2, j + 1] = grvData2.Rows[i].Cells[j].Value.ToString();
+                        worksheet.Cells[i + 2, j + 1] = grv_Data2.Rows[i].Cells[j].Value.ToString();
                     }
                 }
                 // save the application
 
-                workbook.SaveAs("c:\\grvData2.xls", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                workbook.SaveAs("c:\\grv_Data2.xls", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 // Exit from the application
                 app.Quit();
             }
@@ -695,20 +616,20 @@ namespace IndentifiedFace
                 // changing the name of active sheet
                 worksheet.Name = "Exported from gridview";
                 // storing header part in Excel
-                for (int i = 1; i < grvdata3.Columns.Count + 1; i++)
+                for (int i = 1; i < grv_Data3.Columns.Count + 1; i++)
                 {
-                    worksheet.Cells[1, i] = grvdata3.Columns[i - 1].HeaderText;
+                    worksheet.Cells[1, i] = grv_Data3.Columns[i - 1].HeaderText;
                 }
                 // storing Each row and column value to excel sheet
-                for (int i = 0; i < grvdata3.Rows.Count - 1; i++)
+                for (int i = 0; i < grv_Data3.Rows.Count - 1; i++)
                 {
-                    for (int j = 0; j < grvdata3.Columns.Count; j++)
+                    for (int j = 0; j < grv_Data3.Columns.Count; j++)
                     {
-                        worksheet.Cells[i + 2, j + 1] = grvdata3.Rows[i].Cells[j].Value.ToString();
+                        worksheet.Cells[i + 2, j + 1] = grv_Data3.Rows[i].Cells[j].Value.ToString();
                     }
                 }
                 // save the application
-                workbook.SaveAs("c:\\grvData3.xls", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                workbook.SaveAs("c:\\grv_Data3.xls", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 // Exit from the application
                 app.Quit();
             }
@@ -774,8 +695,19 @@ namespace IndentifiedFace
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            frmLogin frm = new frmLogin(applicationConfiguration);
+            frmLogin frm = new frmLogin(applicationConfiguration);            
             frm.Show();
+            this.Hide();
+        }
+
+        private void dgvDS_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void grvData2_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
         private void label5_Click(object sender, EventArgs e)
