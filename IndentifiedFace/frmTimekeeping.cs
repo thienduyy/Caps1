@@ -486,7 +486,6 @@ namespace IndentifiedFace
         }
         private void btnCallTheRoll_Click(object sender, EventArgs e)
         {
-
             Timekeeping();
         }
 
