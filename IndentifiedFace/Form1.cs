@@ -85,7 +85,7 @@ namespace IndentifiedFace
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = @"SELECT DISTINCT b.fldEmployeeID as 'EmployeeID',
                                         b.fldFirstName as 'FirstName',b.fldLastName as 'LastName',
-                                    (Case b.fldSex when 'True' then N'Nam' else N'Nữ' end)
+                                    (Case b.fldSex when 'True' then N'Male' else N'Female' end)
                                     ,b.fldBirth as 'Birthday', a.fldGroupName as 'Department'
                                      FROM   tblGroup a INNER JOIN tblEmployee b
                                             ON a.fldGroupID = b.fldGroupID INNER JOIN tblTimekeeping c
@@ -177,6 +177,11 @@ namespace IndentifiedFace
 
         }
 
+        public static bool IsValidDate(DateTime startDate, DateTime endDate)
+        {
+            return startDate < endDate && endDate > startDate;
+        }
+
         private void dtpFrom_ValueChanged(object sender, EventArgs e)
         {
             GetList();
@@ -195,6 +200,7 @@ namespace IndentifiedFace
         {
             GetList();
             //dtpTo.Value = DateTime.Now;
+            
         }
 
         private void dgvDS_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -252,6 +258,22 @@ namespace IndentifiedFace
 
         private void bunifuCustomDataGrid1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+        }
+
+        private void dtpTo_CloseUp(object sender, EventArgs e)
+        {
+            DateTime fromDate = Convert.ToDateTime(dtpFrom.Value);
+            DateTime toDate = Convert.ToDateTime(dtpTo.Value);
+            DateTime toDay = DateTime.Now;
+            if( fromDate > toDate)
+            {               
+                MessageBox.Show("From Date Must Be Lesser Than To Date!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+            }else if(toDate > toDay)
+            {
+                MessageBox.Show("To Date Must Be Transgress Than To Day!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
         }
     }

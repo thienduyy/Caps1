@@ -398,7 +398,7 @@ namespace IndentifiedFace
             }
             else
             {
-                MessageBox.Show("Nhân viên không được tìm thấy!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Employee does not exist!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 // đoạn này đưa dữ liệu ra cổng COM sẽ là B
                 //serialPortManager.WriteConnection(applicationConfiguration.getLanguagePackage().getMakingRollCallFailSerialMessage());
             }
@@ -413,48 +413,73 @@ namespace IndentifiedFace
             dtbl.Clear();
             foreach (var item in Presence)
             {
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = @"SELECT  fldEmployeeID as 'EmployeeID',fldFirstName as 'FirstName',fldLastName as 'LastName', fldGroupName as 'Department'
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = con;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = @"SELECT  fldEmployeeID as 'EmployeeID',fldFirstName as 'FirstName',fldLastName as 'LastName', fldGroupName as 'Department'
                                             FROM   tblGroup INNER JOIN tblEmployee 
                                             ON tblGroup.fldGroupID = tblEmployee.fldGroupID
                                             where fldEmployeeID= @EmployeeID";
-                cmd.Parameters.Add("@EmployeeID", SqlDbType.Int, 16).Value = Convert.ToInt16(item.ToString());
-                da.SelectCommand = cmd;
-                da.Fill(dt2);
+                    cmd.Parameters.Add("@EmployeeID", SqlDbType.Int, 16).Value = Convert.ToInt16(item.ToString());
+                    da.SelectCommand = cmd;
+                    da.Fill(dt2);
 
-                SqlCommand sqlCmd = new SqlCommand();
-                sqlCmd.Connection = con;
-                sqlCmd.CommandType = CommandType.Text;
-                sqlCmd.CommandText = @"SELECT  fldEmployeeID FROM tblGroup INNER JOIN tblEmployee 
+                    SqlCommand sqlCmd = new SqlCommand();
+                    sqlCmd.Connection = con;
+                    sqlCmd.CommandType = CommandType.Text;
+                    sqlCmd.CommandText = @"SELECT  fldEmployeeID FROM tblGroup INNER JOIN tblEmployee 
                                             ON tblGroup.fldGroupID = tblEmployee.fldGroupID
                                             where fldEmployeeID= @EmployeeID";
-                sqlCmd.Parameters.Add("@EmployeeID", SqlDbType.Int, 16).Value = Convert.ToInt16(item.ToString());
-                da.SelectCommand = sqlCmd;
-                da.Fill(dtbl);
+                    sqlCmd.Parameters.Add("@EmployeeID", SqlDbType.Int, 16).Value = Convert.ToInt16(item.ToString());
+                    da.SelectCommand = sqlCmd;
+                    da.Fill(dtbl);
 
-                if (dt1.Rows.Count > 0)
-                {
-                    SqlCommand cmd2 = new SqlCommand();
-                    cmd2.Connection = con;
-                    cmd2.CommandType = CommandType.Text;
-                    //cmd2.CommandText = @"INSERT INTO tblTimekeeping(tDatetime,fldEmployeeID) VALUES('" + date + "','" + dtbl.Rows[0]["fldEmployeeID"] + "')";
-                    cmd2.CommandText = @"INSERT INTO tblTimekeeping(tDatetime,fldEmployeeID) VALUES(getdate(),'" + dtbl.Rows[0]["fldEmployeeID"] + "')";
-                    cmd2.ExecuteNonQuery();
-                    grv_Data2.DataSource = dt2;
-                    ///
-                    // Phân công công việc
-                    ///
-                    int employeeId = Int32.Parse(dtbl.Rows[0]["fldEmployeeID"].ToString());
-                    //nếu == 0 thì nhân viên này chưa được phân công việc
-                    if (new WorkAssignment(applicationConfiguration).CheckEmployeeWorkDay(employeeId)==0)
+                    if (dt1.Rows.Count > 0)
                     {
-                        new WorkAssignment(applicationConfiguration).RandomWork(employeeId);                        
+                        SqlCommand cmd2 = new SqlCommand();
+                        cmd2.Connection = con;
+                        cmd2.CommandType = CommandType.Text;
+                        //cmd2.CommandText = @"INSERT INTO tblTimekeeping(tDatetime,fldEmployeeID) VALUES('" + date + "','" + dtbl.Rows[0]["fldEmployeeID"] + "')";
+                        cmd2.CommandText = @"INSERT INTO tblTimekeeping(tDatetime,fldEmployeeID) VALUES(getdate(),'" + dtbl.Rows[0]["fldEmployeeID"] + "')";
+                        cmd2.ExecuteNonQuery();
+                        grv_Data2.DataSource = dt2;
+                        ///
+                        // Phân công công việc
+                        ///
+                        //int employeeId = Int32.Parse(dtbl.Rows[0]["fldEmployeeID"].ToString());
+                        //nếu == 0 thì nhân viên này chưa được phân công việc
+                        //if (new WorkAssignment(applicationConfiguration).CheckEmployeeWorkDay(employeeId) == 0)
+                        //{
+                        //    new WorkAssignment(applicationConfiguration).RandomWork(employeeId);
+                        //    ShowWorkEmployee(employeeId);
+                        //}
+
+                    
+                }                            
+            }
+            //phân công công việc và hiển thị công việc
+            foreach (var item in Presence)
+            {
+                int fldEmployeeID = Convert.ToInt16(item.ToString());
+                if (new WorkAssignment(applicationConfiguration).CheckEmployeeWorkDay(fldEmployeeID) == 0)
+                {
+                    if (dt1.Rows.Count > 0)
+                    {
+                        ///
+                        // Phân công công việc
+                        ///
+                        int employeeId = fldEmployeeID;
+                        //nếu == 0 thì nhân viên này chưa được phân công việc
+                        if (new WorkAssignment(applicationConfiguration).CheckEmployeeWorkDay(employeeId) == 0)
+                        {
+                            new WorkAssignment(applicationConfiguration).RandomWork(employeeId);
+                            //show công việc
+                            ShowWorkEmployee(employeeId);
+                        }
                     }
-                    ShowWorkEmployee(employeeId);
                 }
             }
+
             dt3.Clear();
             foreach (var item in Absence)
             {
@@ -472,8 +497,7 @@ namespace IndentifiedFace
                 {
                     grv_Data3.DataSource = dt3;
                 }
-            }
-            
+            }            
         }
         /// <summary>
         /// Hiển thị công việc của nhân viên
